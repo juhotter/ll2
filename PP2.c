@@ -8,7 +8,7 @@ int main(){
 
 
     //definitionen
-    int n = 10;
+    int n = 1000;
     int a[n][n];
     int b[n][n];
     int c[n][n];
