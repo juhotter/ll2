@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#define NUM_THREADS 8
+#define NUM_THREADS 5
 
 #define TOT_COUNT 500000000
 
