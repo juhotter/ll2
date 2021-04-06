@@ -1,0 +1,13 @@
+Realtion		Anzahl Tupel
+
+Artist			5
+Album			11
+Track			147
+Rock Tracks		114
+Playlist 		3
+PlaylistContent		379
+Genre			9
+Invoice 		32
+Invoice after 2010-01-01 25
+InvoiceParts		99
+Customer 		27	
