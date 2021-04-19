@@ -52,12 +52,14 @@ void merge_sort(int *arr, int n, int *buff)
         return;
     }
 // Divide and Conquer
+//this task has a shared varible arr and only gets parallelized when the arraysize is > 10000 to avoid useless overhead
 #pragma omp task shared(arr) if (n > TASK_SIZE)
     merge_sort(arr, n / 2, buff);
 
 #pragma omp task shared(arr) if (n > TASK_SIZE)
     merge_sort(arr + (n / 2), n - (n / 2), buff + n / 2);
 // Combine
+//To merge the sub-arrays, the divide part has to be done before, so this task has to wait till the divide part is done
 #pragma omp taskwait
     merge(arr, n, buff);
 
@@ -101,6 +103,7 @@ int main(int argc, char *argv[])
 #pragma omp parallel
     {
 #pragma omp single
+        //parallel execution but first function call is made by a single
         merge_sort(arr, n, buff); // sort the array
     }
     /*printf("\n\nSorted array:"); // print sorted array
