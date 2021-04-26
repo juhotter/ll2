@@ -25,6 +25,7 @@ void printTemperature(double *m, int N, int M);
 
 int main(int argc, char **argv)
 {
+    double startTime = omp_get_wtime();
     // 'parsing' optional input parameter = problem size
     int N = 200;
     if (argc > 1)
@@ -138,6 +139,8 @@ error_b:
     free(B);
 error_a:
     free(A);
+    double endTime = omp_get_wtime();
+    printf("time: %2.4f seconds\n", endTime - startTime);
     return (success) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 
