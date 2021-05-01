@@ -1,0 +1,5 @@
+From n=2000000 is the parallel one with 8 Threads faster than the sequential one (in alternative version).
+
+Yes, the effort paid off, since we rewrote the programm and split the tasks for each thread and could parallelize it by that. 
+
+The problem: if num_threads is not a divisor of n, it is possible that it leads to some zeros printed in the end or that it only calculates to n-1.
