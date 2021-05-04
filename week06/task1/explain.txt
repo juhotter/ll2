@@ -3,3 +3,16 @@ From n=2000000 is the parallel one with 8 Threads faster than the sequential one
 Yes, the effort paid off, since we rewrote the programm and split the tasks for each thread and could parallelize it by that. 
 
 The problem: if num_threads is not a divisor of n, it is possible that it leads to some zeros printed in the end or that it only calculates to n-1.
+
+
+n = 1e9 = 1000000000
+Sqeuential: 15.2530
+
+Alternative: 
+    1 thread: 15.9514
+    8 threads: 6.6548
+
+Parallel normal:
+    1 thread: 15.8988
+    8 threads: 11.2686
+    
