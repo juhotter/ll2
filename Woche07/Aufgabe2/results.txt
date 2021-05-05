@@ -3,10 +3,7 @@ Problem size: 2048
 Sequential: 4.3792 seconds
 Vectorized: 1.4330 seconds
 
-No, the result is not always correct. Some values are "nan" or seem like an overflow.
-I made a counter to check the false values:
-	Sequential: up to 200
-	Vectorized: around 100
+I made a counter to check false results: Yes, in both programs the result is still correct
 
 SIMD_INST_RETIRED.ANY: This event counts the overall number of retired SIMD instructions
 
@@ -25,10 +22,11 @@ Performance counter stats for './task2vec 2048':
 
                  0      rC710                                                       
 
-       1,536849699 seconds time elapsed
+       1,473095724 seconds time elapsed
 
-       1,506765000 seconds user
-       0,004018000 seconds sys
+       1,461332000 seconds user
+       0,000000000 seconds sys
+
 
 
 
@@ -53,9 +51,6 @@ Performance counter stats for './task2 2048':
 
 Changing datatype to double:
 
-The false values decrease enormous:
-	Sequential: around 10
-	Vectorized: <10
-	
-
+The sequential program gets slower by around 0.7sec
+The Vectorized program gets slower by around 0.1sec
 
