@@ -54,3 +54,5 @@ Changing datatype to double:
 The sequential program gets slower by around 0.7sec
 The Vectorized program gets slower by around 0.1sec
 
+
+LCC2 Vectorized: 4.1262 seconds
