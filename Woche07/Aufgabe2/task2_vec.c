@@ -26,9 +26,10 @@ int main(int argc, char **argv)
     int counter = 0;
 //Single Instruction Multiple Data
 //A statement inside a loop which is not involved in a cycle of thedependence graph can be vectorized
-#pragma omp simd
+
     for (int run = 0; run < repetitions; run++)
     {
+#pragma omp simd
         for (int i = 0; i < size; i++)
         {
             a[i] += b[i] * c[i];
