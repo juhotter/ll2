@@ -1,0 +1,10 @@
+CFLAGS = -fopenmp -O1
+
+.PHONY: all clean
+
+all: task_3
+
+clean:
+	$(RM)  task_3
+
+client: task_3.c
