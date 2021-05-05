@@ -1,0 +1,61 @@
+Problem size: 2048
+
+Sequential: 4.3792 seconds
+Vectorized: 1.4330 seconds
+
+No, the result is not always correct. Some values are "nan" or seem like an overflow.
+I made a counter to check the false values:
+	Sequential: up to 200
+	Vectorized: around 100
+
+SIMD_INST_RETIRED.ANY: This event counts the overall number of retired SIMD instructions
+
+Retired instruction -> executed and its results are correct and visible in the architectural state (Leaves the retirement unit)
+
+Performance counter stats for './task2vec 2048':
+
+                 0      rC701                                                       
+
+       1,494703458 seconds time elapsed
+
+       1,482729000 seconds user
+       0,000000000 seconds sys
+
+Performance counter stats for './task2vec 2048':
+
+                 0      rC710                                                       
+
+       1,536849699 seconds time elapsed
+
+       1,506765000 seconds user
+       0,004018000 seconds sys
+
+
+
+Performance counter stats for './task2 2048':
+
+                 0      rC701                                                       
+
+       4,481561904 seconds time elapsed
+
+       4,470271000 seconds user
+       0,000000000 seconds sys
+
+Performance counter stats for './task2 2048':
+
+                 0      rC710                                                       
+
+       4,457432078 seconds time elapsed
+
+       4,446260000 seconds user
+       0,000000000 seconds sys
+
+
+Changing datatype to double:
+
+The false values decrease enormous:
+	Sequential: around 10
+	Vectorized: <10
+	
+
+
