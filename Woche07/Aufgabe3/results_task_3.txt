@@ -1,0 +1,17 @@
+We tried to compute the results of the gcc-specific intrinsic functions with array size of 2048.
+The results were always corroct with and without the optimization flag -O1, but was way faster with the flag.
+
+time on local machine without -O1:  6.543  seconds
+time on local machine:              0.6125 seconds
+time on LCC2:                       0.6256 seconds
+
+it nearly took the same time on the local machine and the LCC2
+
+I tried to install the 'pref' tool but I wasn't able - Igot some problems.
+
+How does the solution for this Exercise compare to Exercise 2 and Exercise 1? 
+Are there any advantages or disadvantages?
+
+The results were correct for each exercises.
+But in exercise 2 we got better times, I took nearly the half of the time as in exercise 3.
+In comparision to exercise 1, we got better results in exercise 3 but the effort was not that big. 
