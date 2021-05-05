@@ -1,7 +1,7 @@
 Problem size: 2048
 
 Sequential: 4.3792 seconds
-Vectorized: 1.4330 seconds
+Vectorized: 0.3428 seconds
 
 I made a counter to check false results: Yes, in both programs the result is still correct
 
