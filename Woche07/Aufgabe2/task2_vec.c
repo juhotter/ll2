@@ -13,9 +13,9 @@ int main(int argc, char **argv)
     /*float a[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     float b[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     float c[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};*/
-    double a[size];
-    double b[size];
-    double c[size];
+    float a[size];
+    float b[size];
+    float c[size];
 
     for (int i = 0; i < size; i++)
     {
