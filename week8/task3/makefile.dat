@@ -1,0 +1,10 @@
+CFLAGS = -fopenmp
+
+.PHONY: all clean
+
+all: analysis_task3_exc1 analysis_task3_exc2 analysis_task3_exc3
+
+clean:
+	$(RM)  analysis_task3_exc1 analysis_task3_exc2 analysis_task3_exc3
+
+client: analysis_task3_exc1.c analysis_task3_exc2.c analysis_task3_exc3
