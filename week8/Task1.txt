@@ -1,0 +1,133 @@
+a)
+
+a[0] = 0;
+#pragma omp parallel for
+for (i=1; i<N; i++) {
+    a[i] = 2.0*i*(i-1);    (S1)
+    b[i] = a[i] - a[i-1];  (S2)
+}
+
+
+
+Here we have a True dependence between the source a[i] = ... and the sink b[i] = ...a[i-1], because we write an element and read it afterwards.
+For example
+
+i = 2
+a[2] -> write
+a[1] -> read
+
+i = 3
+a[3] -> write
+a[2] -> read
+
+S1[2] sigma S2[1] -> Direction vector is (<)
+Example: (2)-(1) = (1) (dependence distance)
+
+-> in the iteration i=2 we wrote into a[2] and in iteration i = 3 we read a[2] (loop carried dependence)
+
+It is not parallelized correctly, because if a thread reads a[2] before it is even written in the correct value, the result will be incorrect.
+
+Another dependence is a[i] in S1 and a[i] in S2, but its direction vector is (=) and it is not loop-carried.
+
+Solution:
+
+a[0] = 0;
+#pragma omp parallel for
+for (i=1; i<N; i++) {
+    a[i] = 2.0*i*(i-1);    (S1)
+
+}
+
+#pragma omp parallel for
+for (i=1; i<N; i++) {
+    b[i] = a[i] - a[i-1];  (S2)
+}
+
+We have no cycle, so we can split it into two seperate loops, where the dependency is still present but the loops can be parallelized, because all calues in "a" are written correctly.
+Disadvantage: two loops have to be done -> slower
+
+b)
+
+a[0] = 0;
+#pragma omp parallel
+{
+    #pragma omp for nowait
+    for (i=1; i<N; i++) {
+        a[i] = 3.0*i*(i+1);
+    }
+    #pragma omp for
+    for (i=1; i<N; i++) {
+        b[i] = a[i] - a[i-1];
+    }
+}
+
+Not parallelized correctly, due to "nowait" -> The threads of the team do not synchronize at a certain point. So the second loop might be executed even if the first one is not yet finished, because the trheads do not wait.
+
+We have the same dependencies as before in a).
+
+Can be solved by deleting the "nowait", but it is possible that the programm will be slower due to threads waiting for each other.
+
+
+c)
+
+#pragma omp parallel for
+for (i=1; i<N; i++) {
+    x = sqrt(b[i]) - 1;
+    a[i] = x*x + 2*x + 1;
+}
+
+There is a dependence between S1 and S2 (true dependence), because x is written first and then read, but the threads will write different values into x and will influence each other.
+So this is not parallelized correctly.
+It is not clear if x is declared in the loop, but if so, x would be private by default and else shared by default!! 
+
+Solution: privatization
+
+int x, jx[]
+#pragma omp parallel for
+for (i=1; i<N; i++) {
+    jx[i] = sqrt(b[i]) - 1;
+    a[i] = jx[i]*jx[i] + 2*jx[i] + 1;
+}
+x = jx[N-1]
+
+We introduce a new array and make a not loop-carried dependence, where the order of the two statements is very important. 
+Still a true dependence.
+
+d)
+
+f = 2;
+#pragma omp parallel for private(f,x)
+for (i=1; i<N; i++) {
+    x = f * b[i];
+    a[i] = x - 7;
+}
+a[0] = x; 
+
+
+It is not clear if x is already declared or if x = ... is just a simplification of "int x =..."
+Assumption: already declared.
+
+Each thread creates a copy of the global variables, but one thread may reuse the global variable
+-> The value of x after the loop is undefined!!
+
+So this is not parallelized well, because the value of x might be undefined when assigning to a[0].
+The true dependence between S1 and S2 is not loop-carried due to every thread having a private variable x, which is not visible for other threads.
+
+Solution:
+
+Making x not private and using privatisation or assigning x to a defined value after the loop.
+
+
+e)
+
+sum = 0; 
+#pragma omp parallel for
+for (i=1; i<N; i++) {
+    sum = sum + b[i];
+}
+
+This is not parallelized correctly, because the result of "sum" can be different and is dependent on the order of the iterations executed by the threads.
+S1 is true dependent on S2. This dependence is loop carried.
+
+We can solve this by a reduction operation, which has not been presented yet in the Lecture (The lecture on Friday 7th of May only presented this topic until slide 92, "redcution operation" is on slide 104)
+
