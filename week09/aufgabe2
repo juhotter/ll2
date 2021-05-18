@@ -122,7 +122,13 @@ for (int i = 1; i<n; i++) {
 
 Questions:
 -Where are the data dependencies?
+There are loop carried dependencies on x.
+
+
 -How can you parallelize the loops?
+Look above the implementation.
+
+
 -Implement the original and parallelized versions and compare their wall time for reasonable sizes and numbers of threads.
 
 Assumption: 
