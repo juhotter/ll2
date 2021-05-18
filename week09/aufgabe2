@@ -142,3 +142,32 @@ int twice = 0; so that it jumps NOT into the if condition.
 Wall time for Serial: 7.9752 seconds
 
 
+So now change the code like the following to allow parallelization without dependencies.
+
+int i = 1;
+if (twice)
+{
+    #pragma omp parallel for
+    for (i = 1; i < n; i++)
+    {
+        x[i] = x[i] + 5 * y[i];
+        x[i - 1] = 2 * x[i - 1];
+    }
+
+    #pragma omp parallel for
+for (i = 1; i < n; i++)
+    {
+        x[i - 1] = 2 * x[i - 1];
+    }
+
+}
+     else
+     {
+         x[i] = x[i] + 5 * y[i];
+
+     }
+     
+     now for twice = 0 i got the times: 0.0004 seconds
+     now for twice = 1 i got the times: 8.1292 seconds
+     
+
