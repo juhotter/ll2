@@ -80,7 +80,8 @@ for (int i = 1; i<n; i++) {
 So you have a true dependency, this does not parallelize per se, but brings an simple approvement and only needs 7.03 seconds now.
 
 
-Resume: So the best one is Simply Using PRAGMA OMG PARALLEL FOR and leave the loop alltogether
+Resume: So the best one is Simply Using PRAGMA OMG PARALLEL FOR and leave the loop alltogether. But because there are a dependecy this can result in a error. So the safe
+and best way to go is simply break the loops and parallelize it seperately.
 ________________________________________________________________________________________________________________
 
 c)
