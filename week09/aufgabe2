@@ -32,7 +32,9 @@ for (int i = 1; i<n; i++) {
 
 Questions:
 -Where are the data dependencies?
+The data dependencies are between the X array and the Y array. 
 -How can you parallelize the loops?
+i tried the two appraoches above with time measured.
 -Implement the original and parallelized versions and compare their wall time for reasonable sizes and numbers of threads.
 Wall time with the same values for both measures
 Serial: 12.1110 seconds
