@@ -1,3 +1,19 @@
+These are the values i used in my C Programm to make the wall times. I used everytime the same values.
+long n = 1000000000; 
+int *x =  (int *) malloc(n * sizeof(int));
+int *y = (int *) malloc(n * sizeof(int));
+int *z = (int *) malloc(n * sizeof(int));
+double factor = 10000000;
+
+
+
+
+
+________________________________________________________________________________________________________________
+
+
+
+
 a.)
 
 
