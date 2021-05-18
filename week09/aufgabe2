@@ -34,6 +34,9 @@ Questions:
 -Where are the data dependencies?
 -How can you parallelize the loops?
 -Implement the original and parallelized versions and compare their wall time for reasonable sizes and numbers of threads.
+Wall time with the same values for both measures
+Serial: 12.1110 seconds
+Parallel:
 
 
 
