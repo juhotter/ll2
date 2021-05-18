@@ -59,6 +59,20 @@ for (int i = 1; i<n; i++) {
 }
 
 This resultet in a time for 6.53 seconds.
+
+
+Another simple approach would be to simply switch the two statements in the loop 
+
+for (int i = 1; i<n; i++) {
+     y[i] = y[i] + z[i] * 3;
+    x[i] = (x[i] + y[i-1]) / 2;
+   
+}
+
+So you have a true dependency, this does not parallelize per se, but brings an simple approvement and only needs 7.03 seconds now.
+
+
+Resume: So the best one is Simply Using PRAGMA OMG PARALLEL FOR
 ________________________________________________________________________________________________________________
 
 c)
