@@ -36,10 +36,27 @@ Questions:
 -Implement the original and parallelized versions and compare their wall time for reasonable sizes and numbers of threads.
 Wall time with the same values for both measures
 Serial: 12.1110 seconds
-Parallel:
+Parallel: first i tried to make two loops out of it. These are no-nowait by default so they are even slower. I got 15.5 seconds.
 
+Like this:
+for (int i = 1; i<n; i++) {
+    y[i] = y[i] + z[i] * 3;
+}
 
+for (int i = 1; i<n; i++) {
+    x[i] = (x[i] + y[i-1]) / 2;
+   
+}
 
+Then i made simply a PRAGMA OMP PARALLEL FOR
+
+#pragma omp parallel for
+for (int i = 1; i<n; i++) {
+    x[i] = (x[i] + y[i-1]) / 2;
+    y[i] = y[i] + z[i] * 3;
+}
+
+This resultet in a time for 6.53 seconds.
 ________________________________________________________________________________________________________________
 
 c)
