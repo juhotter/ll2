@@ -1,0 +1,53 @@
+a.)
+
+
+double factor = 1;
+
+for (int i=0; i < n; i++) {
+    x[i] = factor * y[i];
+    factor = factor / 2;
+}
+
+
+
+Questions:
+Where are the data dependencies?
+How can you parallelize the loops?
+Implement the original and parallelized versions and compare their wall time for reasonable sizes and numbers of threads.
+
+
+
+
+________________________________________________________________________________________________________________
+b)
+
+for (int i = 1; i<n; i++) {
+    x[i] = (x[i] + y[i-1]) / 2;
+    y[i] = y[i] + z[i] * 3;
+}
+
+Questions:
+Where are the data dependencies?
+How can you parallelize the loops?
+Implement the original and parallelized versions and compare their wall time for reasonable sizes and numbers of threads.
+
+
+
+________________________________________________________________________________________________________________
+
+c)
+
+x[0] = x[0] + 5 * y[0];
+for (int i = 1; i<n; i++) {
+    x[i] = x[i] + 5 * y[i];
+    if ( twice ) {
+        x[i-1] = 2 * x[i-1]
+    }
+}
+
+
+
+Questions:
+Where are the data dependencies?
+How can you parallelize the loops?
+Implement the original and parallelized versions and compare their wall time for reasonable sizes and numbers of threads.
