@@ -20,10 +20,16 @@ There are no Data dependencies in general. No loop carried and no "normal" ones.
 The appraoches i tried below. i made the factor private, so every single loop has its own copy.
 
 -Implement the original and parallelized versions and compare their wall time for reasonable sizes and numbers of threads.
-Wall Time for the serial Version: 10.1487 seconds
+Wall Time for the serial Version: 10.1487 seconds.
 
+For this version above i get 4.49 seconds. So theres a huge improvement.
 
-
+#pragma omp parallel for private(factor)
+for (int i = 0; i < n; i++)
+{
+    x[i] = factor * y[i];
+    factor = factor / 2;
+}
 
 
 ________________________________________________________________________________________________________________
