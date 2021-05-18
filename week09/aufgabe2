@@ -38,19 +38,21 @@ i tried the two appraoches above with time measured.
 -Implement the original and parallelized versions and compare their wall time for reasonable sizes and numbers of threads.
 Wall time with the same values for both measures
 Serial: 12.1110 seconds
-Parallel: first i tried to make two loops out of it. These are no-nowait by default so they are even slower. I got 15.5 seconds.
+Parallel: first i tried to make two loops out of it. And now parallelize these with pragma parallel for. So i got  a wall time for 8.59 seconds.
 
 Like this:
+#pragma omp parallel for
 for (int i = 1; i<n; i++) {
     y[i] = y[i] + z[i] * 3;
 }
 
+#pragma omp parallel for
 for (int i = 1; i<n; i++) {
     x[i] = (x[i] + y[i-1]) / 2;
    
 }
 
-Then i made simply a PRAGMA OMP PARALLEL FOR
+Then i made simply a PRAGMA OMP PARALLEL FOR without splitting the loop into two
 
 #pragma omp parallel for
 for (int i = 1; i<n; i++) {
@@ -72,7 +74,7 @@ for (int i = 1; i<n; i++) {
 So you have a true dependency, this does not parallelize per se, but brings an simple approvement and only needs 7.03 seconds now.
 
 
-Resume: So the best one is Simply Using PRAGMA OMG PARALLEL FOR
+Resume: So the best one is Simply Using PRAGMA OMG PARALLEL FOR and leave the loop alltogether
 ________________________________________________________________________________________________________________
 
 c)
