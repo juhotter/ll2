@@ -108,6 +108,8 @@ ________________________________________________________________________________
 
 c)
 
+
+
 x[0] = x[0] + 5 * y[0];
 for (int i = 1; i<n; i++) {
     x[i] = x[i] + 5 * y[i];
@@ -122,3 +124,14 @@ Questions:
 -Where are the data dependencies?
 -How can you parallelize the loops?
 -Implement the original and parallelized versions and compare their wall time for reasonable sizes and numbers of threads.
+
+Assumption: 
+int twice = 1; so that it jumps into the if condition.
+Wall time for Serial: 8.9162 seconds
+
+
+Assumption: 
+int twice = 0; so that it jumps NOT into the if condition.
+Wall time for Serial: 7.9752 seconds
+
+
