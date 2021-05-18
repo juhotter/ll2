@@ -28,12 +28,12 @@ for (int i=0; i < n; i++) {
 
 Questions:
 -Where are the data dependencies?
-There are no Data dependencies in general. No loop carried and no "normal" ones.
+There are a NOT loop carried dependency. 
 
 
 
 -How can you parallelize the loops?
-The appraoches i tried below. i made the factor private, so every single loop has its own copy.
+The appraoches i tried below. i made the factor private, so every single loop has its own copy.So theres no issue now and you can paralellize.
 
 -Implement the original and parallelized versions and compare their wall time for reasonable sizes and numbers of threads.
 Wall Time for the serial Version: 10.1487 seconds.
@@ -122,7 +122,8 @@ for (int i = 1; i<n; i++) {
 
 Questions:
 -Where are the data dependencies?
-There are loop carried dependencies on x.
+There are two dependencies. One loop carried and one casual dependecy. The loop carried is on the x[].
+So so you cannot simply parallelize this like in the first one.
 
 
 -How can you parallelize the loops?
