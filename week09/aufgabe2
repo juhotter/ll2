@@ -151,7 +151,7 @@ if (twice)
     for (i = 1; i < n; i++)
     {
         x[i] = x[i] + 5 * y[i];
-        x[i - 1] = 2 * x[i - 1];
+        
     }
 
     #pragma omp parallel for
