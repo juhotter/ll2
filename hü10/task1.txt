@@ -1,0 +1,33 @@
+The gprof command is useful in identifying how a program consumes processor resource. To find out which functions (routines) in the program are using the processor, you can profile the program with the gprof command.
+
+In the first part of the analysis file, we can obtain a table with different numbers and information, sorted by decreasing time, so the highest times are on the top.
+
+The table shows the execution time, number of calls, percentage time of the whole running time of the programm and further information of all functions called in the program.
+
+This can be useful to see if a function or the function call should be considered to be parallelized. Functions with a long execution time should (if possible) be parallelized and functions that are called often could be parallelized in the function call itself (if possible).
+
+
+
+
+The seconds part shows a call graph.
+
+The second listing shows the functions that are sorted according to the time they represent, including the time of their call-graph descendants. Below each function entry are its (direct) call-graph children, with an indication of how their times are propagated to this function. A similar display above the function shows how the time of the function and the time of its descendants are propagated to its (direct) call-graph parents.
+
+
+We can observe different calls in the program:
+
+	-called gives an overview of how often a function was called by a parent vs. how often it was 		called in total.
+
+	-We can observe the time and calls for every function
+
+	-We can see how much time the children relativly take of the whole function call of the parent
+
+	-If a parent of a function can not be determined, it is marked with `<spontaneous>'
+
+	-recursive call are marked by '+' and the number of recursive calls
+
+
+I think in entry [4] there is a circle (it represents a circle)
+
+
+This file helps to improve perfomance of the programm by seeing which function took how much time and gives an overview of function calls.
