@@ -1,0 +1,10 @@
+CFLAGS = -fopenmp
+
+.PHONY: all clean
+
+all: task1_a task1_b task1_c task1_d task1_e
+
+clean:
+	$(RM)  task1_a task1_b task1_c task1_d task1_e
+
+client: task1_a.c task1_b.c task1_c task1_d.c task1_e.c
